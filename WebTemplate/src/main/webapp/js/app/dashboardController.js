@@ -4,6 +4,16 @@ app.controller("dashboardController", function($scope, $rootScope, $location, $h
 	$http.get('/fetchExistingShortURL').then(function(response){
 		$scope.listOfExistingURL = response.data;
 	})
+	$scope.getList = function()
+	{
+		$http.get('/fetchExistingShortURL').then(function(response){
+			$scope.listOfExistingURL = response.data;
+		})
+	}
+
+		
+	
+	
 	
 $scope.generateShortenedURL = function(url)
 {

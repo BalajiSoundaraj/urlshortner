@@ -3,6 +3,7 @@ package com.web.webtemplate.beans;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 public class URLShortener {
 	
@@ -13,16 +14,12 @@ public class URLShortener {
 	@Id
 	private String shortUrl;
 	private LocalDateTime creationDate;
-	private String urlHitCount;
+	@Field
+	private int urlHitCount=1;
 	
 	
 	
-	public String getUrlHitCount() {
-		return urlHitCount;
-	}
-	public void setUrlHitCount(String urlHitCount) {
-		this.urlHitCount = urlHitCount;
-	}
+	
 	public String getOriginalUrl() {
 		return originalUrl;
 	}
@@ -41,23 +38,29 @@ public class URLShortener {
 	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
 	}
-	
 
-	@Override
-	public String toString() {
-		return "URLShortener [originalUrl=" + originalUrl + ", shortUrl=" + shortUrl + ", creationDate=" + creationDate
-				+ ", urlHitCount=" + urlHitCount + "]";
+	public int getUrlHitCount() {
+		return urlHitCount;
 	}
-	public URLShortener(String originalUrl, String shortUrl, LocalDateTime creationDate, String urlHitCount) {
+	public void setUrlHitCount(int urlHitCount) {
+		this.urlHitCount = urlHitCount;
+	}
+	public URLShortener() {
+		super();
+	}
+	public URLShortener(String originalUrl, String shortUrl, LocalDateTime creationDate, int urlHitCount) {
 		super();
 		this.originalUrl = originalUrl;
 		this.shortUrl = shortUrl;
 		this.creationDate = creationDate;
 		this.urlHitCount = urlHitCount;
 	}
-	public URLShortener() {
-		super();
+	@Override
+	public String toString() {
+		return "URLShortener [originalUrl=" + originalUrl + ", shortUrl=" + shortUrl + ", creationDate=" + creationDate
+				+ ", urlHitCount=" + urlHitCount + "]";
 	}
+	
 	
 	
 	

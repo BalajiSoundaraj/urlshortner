@@ -28,17 +28,7 @@ public class URLShortenerController {
 	URLShortenerService urlShortenerService;	
 	
 	
-	@RequestMapping("helloworld")
-	public String helloWorld()
-	{
-		return "Hello World";
-	}
 	
-	@RequestMapping(value="generateShortenedURL1", method = RequestMethod.POST) 
-	public String generateShortenedURL1(@RequestBody String url)
-	{
-		return url;
-	}
 	
 	@RequestMapping("/fetchExistingShortURL")
 	public List<URLShortener> fetchExistingShortURL()
@@ -64,7 +54,7 @@ public class URLShortenerController {
 		
 	}
 	
-	@RequestMapping(value="/{shortLink}" ,method = RequestMethod.GET)
+	@RequestMapping(value="users/{shortLink}" ,method = RequestMethod.GET)
 	public ResponseEntity<?> redirectToOriginalURL(@PathVariable String shortLink, HttpServletResponse response) throws IOException
 	{
 		URLErrorResponse errorResponse = new URLErrorResponse();
@@ -93,18 +83,15 @@ public class URLShortenerController {
 		
 			
 		}
+		urlShortener.setUrlHitCount(urlShortener.getUrlHitCount()+1);
+		urlShortenerService.persistShortURL(urlShortener);
 		response.sendRedirect(urlShortener.getOriginalUrl());
 		return null;
 		
 		
 	}
 	
-	@RequestMapping(value="/home", method=RequestMethod.POST)
-	public ResponseEntity<?> redirectToOriginalURL()
-	{
-		return null;
-		
-		
-	}
+	
+		 
 	
 }
