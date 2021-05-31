@@ -26,7 +26,11 @@ $scope.generateShortenedURL = function(url)
 
 		console.log('response sent');
 
-		$window.alert(response.data);
+
+		$window.alert('Duplicate URL Generated');
+
+		$scope.getList();
+		$scope.longUrl = '';
 	});
 }
 	

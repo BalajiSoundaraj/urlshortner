@@ -10933,6 +10933,8 @@ table.table-striped{
   margin-top: 2%;
   height: 40%;
   margin-bottom: 2%;
+  overflow-x:auto;
+  overflow-y:auto;
 
 
 }
